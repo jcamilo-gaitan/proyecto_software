@@ -1,15 +1,20 @@
-#proyecto_software
+\#proyecto\_software
 
 Hola!
 
 En esta versión encontrará la implementación de las funcionalidades básicas del proyecto "Juegos":
 
-• Creación, edición y eliminación de menús
-diarios/semanales.
 
-• Asociación de cada comida con una receta guardada.
 
-• Generación automática de lista de compras.
+• Agregar, editar y eliminar juegos con información básica (título, plataforma, género).
+
+• Filtrar juegos por estado (rescatado,jugando,pendiente).
+
+
+
+• Búsqueda por título o plataforma.
+
 
 
 ¡Después del 18 de octubre de 2025, vendrán más actualizaciones!
+
