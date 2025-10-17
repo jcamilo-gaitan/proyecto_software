@@ -21,7 +21,7 @@ public class JuegoController {
     }
 
     @PostMapping
-    public ResponseEntity<Juego> createZone(@RequestBody Juego juego){
+    public ResponseEntity<Juego> createJuego(@RequestBody Juego juego){
         return ResponseEntity.status(HttpStatus.CREATED).body(juegoService.createJuego(juego));
     }
 
@@ -31,7 +31,7 @@ public class JuegoController {
     }
 
     @GetMapping("/{id}")
-    public Juego getZoneById(@PathVariable Long id){
+    public Juego getJuegoById(@PathVariable Long id){
         return juegoService.getJuegoById(id);
     }
     @GetMapping("/filtrarEstado/{estado}")
@@ -49,12 +49,12 @@ public class JuegoController {
     }
 
     @PutMapping("/{id}")
-    public Juego updateZone(@PathVariable Long id, @RequestBody Juego updatedJuego){
+    public Juego updateJuego(@PathVariable Long id, @RequestBody Juego updatedJuego){
         return juegoService.updateJuego(id, updatedJuego);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteZone(@PathVariable Long id){
+    public ResponseEntity<Void> deleteJuego(@PathVariable Long id){
         juegoService.deleteJuego(id);
         return ResponseEntity.noContent().build();
     }
