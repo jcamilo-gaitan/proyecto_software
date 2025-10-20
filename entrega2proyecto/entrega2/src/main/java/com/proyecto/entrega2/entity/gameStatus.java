@@ -1,5 +1,5 @@
 package com.proyecto.entrega2.entity;
 
-public enum estadoJuego {
+public enum gameStatus {
     RESCATADO,JUGANDO,PENDIENTE
 }
