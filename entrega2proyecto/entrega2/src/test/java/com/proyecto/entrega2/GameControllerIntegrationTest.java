@@ -1,8 +1,10 @@
 package com.proyecto.entrega2;
 
-import com.proyecto.entrega2.entity.Juego;
-import com.proyecto.entrega2.entity.estadoJuego;
-import com.proyecto.entrega2.repository.JuegoRepository;
+import com.proyecto.entrega2.entity.Game;
+import com.proyecto.entrega2.entity.gameStatus;
+import com.proyecto.entrega2.entity.possibleGenres;
+import com.proyecto.entrega2.entity.possiblePlatforms;
+import com.proyecto.entrega2.repository.GameRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 @ActiveProfiles("integration-testing")
 @DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD)
-class JuegoControllerIntegrationTest {
+class GameControllerIntegrationTest {
 
     @Value("${server.port}")
     int serverPort;
@@ -29,7 +31,7 @@ class JuegoControllerIntegrationTest {
     private WebTestClient webTestClient;
 
     @Autowired
-    private JuegoRepository repo;
+    private GameRepository repo;
 
     private String url(String path) {
         return "http://localhost:" + serverPort + path;
@@ -44,8 +46,8 @@ class JuegoControllerIntegrationTest {
 
         // Semilla mínima para cada prueba
         repo.deleteAll();
-        repo.save(new Juego(0L, "Celeste", "Switch", "Plataformas", estadoJuego.RESCATADO));
-        repo.save(new Juego(0L, "Elden Ring", "PS5", "RPG", estadoJuego.JUGANDO));
+        repo.save(new Game(0L, "Celeste", "lindo juego", possiblePlatforms.NINTENDO_SWITCH, possibleGenres.AVENTURA));
+        repo.save(new Game(0L, "Elden Ring","lindo juego", possiblePlatforms.PLAYSTATION_5, possibleGenres.RPG));
     }
 
     @Test
@@ -54,17 +56,18 @@ class JuegoControllerIntegrationTest {
                 .uri(url("/api/juegos"))
                 .exchange()
                 .expectStatus().isOk()
-                .expectBodyList(Juego.class)
+                .expectBodyList(Game.class)
                 .hasSize(2);
     }
 
     @Test
     void crearCorrectamente() {
         var body = Map.of(
-                "titulo", "Hollow Knight",
-                "plataforma", "PC",
-                "genero", "Metroidvania",
-                "estado", estadoJuego.PENDIENTE.name()
+                "title", "Hollow Knight",
+                "description","buen juego",
+                "platform", possiblePlatforms.PC,
+                "genre", possibleGenres.METROIDVANIA
+
         );
 
         webTestClient.post()
@@ -72,22 +75,23 @@ class JuegoControllerIntegrationTest {
                 .bodyValue(body)
                 .exchange()
                 .expectStatus().isCreated()
-                .expectBody(Juego.class)
+                .expectBody(Game.class)
                 .value(j -> {
-                    assertEquals("Hollow Knight", j.getTitulo());
-                    assertEquals("PC", j.getPlataforma());
+                    assertEquals("Hollow Knight", j.getTitle());
+                    assertEquals(possiblePlatforms.PC, j.getPlatform());
                 });
     }
 
     @Test
     void actualizarCorrectamente() {
-        Long id = repo.findByTitulo("Elden Ring").getId();
+        Long id = repo.findByTitle("Elden Ring").getId();
 
         var cambios = Map.of(
-                "titulo", "Elden Ring (Editado)",
-                "plataforma", "PS5",
-                "genero", "RPG",
-                "estado", estadoJuego.RESCATADO.name()
+                "title", "Elden Ring (Editado)",
+                "description","buen juego",
+                "platform", possiblePlatforms.PLAYSTATION_5,
+                "genre", possibleGenres.RPG
+
         );
 
         webTestClient.put()
@@ -95,16 +99,16 @@ class JuegoControllerIntegrationTest {
                 .bodyValue(cambios)
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(Juego.class)
+                .expectBody(Game.class)
                 .value(j -> {
-                    assertEquals("Elden Ring (Editado)", j.getTitulo());
-                    assertEquals(estadoJuego.RESCATADO, j.getEstado());
+                    assertEquals("Elden Ring (Editado)", j.getTitle());
+
                 });
     }
 
     @Test
     void eliminarCorrectamente() {
-        Long id = repo.findByTitulo("Celeste").getId();
+        Long id = repo.findByTitle("Celeste").getId();
 
         webTestClient.delete()
                 .uri(url("/api/juegos/" + id))
@@ -115,7 +119,7 @@ class JuegoControllerIntegrationTest {
                 .uri(url("/api/juegos"))
                 .exchange()
                 .expectStatus().isOk()
-                .expectBodyList(Juego.class)
+                .expectBodyList(Game.class)
                 .hasSize(1);
     }
 }
