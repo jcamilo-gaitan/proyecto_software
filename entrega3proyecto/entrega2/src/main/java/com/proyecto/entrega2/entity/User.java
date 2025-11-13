@@ -16,6 +16,7 @@ public class User {
     private Long id;
     private String name;
     private String email;
+    @Column(nullable=false)
     private String password;
     private int age;
     private String sex;

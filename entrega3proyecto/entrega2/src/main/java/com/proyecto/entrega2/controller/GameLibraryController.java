@@ -59,6 +59,22 @@ public class GameLibraryController
         gameLibraryService.deleteGameByUserId(userId,gameId);
         return ResponseEntity.noContent().build();
     }
+    // Agregar estos métodos en GameLibraryController.java
+
+    @GetMapping("/ranking")
+    public ResponseEntity<List<Map<String, Object>>> getRankingJuegos() {
+        return ResponseEntity.ok(gameLibraryService.getRankingJuegos());
+    }
+
+    @GetMapping("/estadisticas/plataformas")
+    public ResponseEntity<List<Map<String, Object>>> getEstadisticasPlataformas() {
+        return ResponseEntity.ok(gameLibraryService.getEstadisticasPlataformas());
+    }
+
+    @GetMapping("/estadisticas/estados/{userId}")
+    public ResponseEntity<List<Map<String, Object>>> getEstadisticasEstados(@PathVariable Long userId) {
+        return ResponseEntity.ok(gameLibraryService.getEstadisticasEstados(userId));
+    }
 
 
 

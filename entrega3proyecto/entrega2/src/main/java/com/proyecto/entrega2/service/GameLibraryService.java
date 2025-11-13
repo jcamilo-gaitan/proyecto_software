@@ -10,7 +10,11 @@ import com.proyecto.entrega2.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 @Service
 public class GameLibraryService {
     private final GameLibraryRepository gameLibraryRepository;
@@ -53,5 +57,61 @@ public class GameLibraryService {
         gl.setInsertionDate(LocalDate.now());
         return gameLibraryRepository.save(gl);
     }
+    // ==================== MÉTODOS DE ESTADÍSTICAS ====================
+
+    /**
+     * Obtiene el ranking de juegos más guardados por todos los usuarios
+    @return Lista de mapas con título del juego y cantidad de usuarios que lo tienen
+     */
+    public List<Map<String, Object>> getRankingJuegos() {
+        List<Object[]> results = gameLibraryRepository.findRankingJuegos();
+
+        return results.stream()
+                .limit(10) // Top 10
+                .map(result -> {
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("title", result[0]);
+                    map.put("count", result[1]);
+                    return map;
+                })
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Obtiene estadísticas de las plataformas más frecuentes en todas las bibliotecas
+     * @return Lista de mapas con plataforma y cantidad de juegos
+     */
+    public List<Map<String, Object>> getEstadisticasPlataformas() {
+        List<Object[]> results = gameLibraryRepository.findEstadisticasPlataformas();
+
+        return results.stream()
+                .map(result -> {
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("platform", result[0]);
+                    map.put("count", result[1]);
+                    return map;
+                })
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Obtiene estadísticas de estados de juegos para un usuario específico
+     * @param userId ID del usuario
+     * @return Lista de mapas con estado y cantidad de juegos en ese estado
+     */
+    public List<Map<String, Object>> getEstadisticasEstados(Long userId) {
+        List<Object[]> results = gameLibraryRepository.findEstadisticasByUserId(userId);
+
+        return results.stream()
+                .map(result -> {
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("status", result[0].toString());
+                    map.put("count", result[1]);
+                    return map;
+                })
+                .collect(Collectors.toList());
+    }
 
 }
+
+
