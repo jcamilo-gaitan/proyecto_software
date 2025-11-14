@@ -1,5 +1,6 @@
 package com.proyecto.entrega2.service;
 
+import com.proyecto.entrega2.dto.GameLibraryDTO;
 import com.proyecto.entrega2.entity.*;
 import com.proyecto.entrega2.repository.GameLibraryRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -32,30 +33,44 @@ public class GameLibraryService {
     public List<Game> getGamesByUserId(Long userId) {
         return gameLibraryRepository.findGamesByUserId(userId);
     }
-    public void deleteGameByUserId(Long userId, Long gameId){
-        GameLibraryID id=new GameLibraryID(userId,gameId);
-        gameLibraryRepository.deleteById(id);
+    // MÉTODO CORREGIDO: Actualizar estado
+    public GameLibrary updateStatusOfGameOfUser(Long userId, Long gameId, gameStatus newStatus) {
+        System.out.println("🔍 Buscando juego - userId: " + userId + ", gameId: " + gameId);
+
+        // Buscar usando el método personalizado del repositorio
+        GameLibrary gameLibrary = gameLibraryRepository.findByIdUserIdAndIdGameId(userId, gameId)
+                .orElseThrow(() -> {
+                    System.out.println("❌ No se encontró el juego en la biblioteca");
+                    return new ResourceNotFoundException("Parece que no tienes ese juego");
+                });
+
+        System.out.println("✅ Juego encontrado: " + gameLibrary.getGame().getTitle());
+
+        // Actualizar el estado
+        gameLibrary.setStatus(newStatus);
+
+        // Guardar y retornar
+        GameLibrary saved = gameLibraryRepository.save(gameLibrary);
+        System.out.println("✅ Estado actualizado a: " + saved.getStatus());
+        return saved;
     }
-    public void deleteAllGamesByUserId(Long userId) {
-        gameLibraryRepository.deleteByUserId(userId);
-    }
-    public void deleteAllUsersByGame(long gameId){
-        gameLibraryRepository.deleteByGameId(gameId);
-    }
-    public GameLibrary insertGameByUserId(Long userId, Long gameId){
-        GameLibraryID id=new GameLibraryID(userId,gameId);
-        GameLibrary registro=new GameLibrary(id,userService.getUserById(userId),gameService.getGameById(gameId), gameStatus.PENDIENTE,LocalDate.now());
-        return gameLibraryRepository.save(registro);
-    }
-    public List<Game> getGamesByUserIdAndStatus(Long userId,String status){
-        return gameLibraryRepository.findGamesByUserIdAndStatus(userId,status);
-    }
-    public GameLibrary updateStatusOfGameOfUser(Long userId,Long gameId,gameStatus gameStatus){
-        GameLibraryID id=new GameLibraryID(userId,gameId);
-        GameLibrary gl=gameLibraryRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Parece que no tienes ese juego"));
-        gl.setStatus(gameStatus);
-        gl.setInsertionDate(LocalDate.now());
-        return gameLibraryRepository.save(gl);
+
+    // MÉTODO CORREGIDO: Eliminar juego
+    public void deleteGameByUserId(Long userId, Long gameId) {
+        System.out.println("🗑️ Intentando eliminar - userId: " + userId + ", gameId: " + gameId);
+
+        // Buscar usando el método personalizado
+        GameLibrary gameLibrary = gameLibraryRepository.findByIdUserIdAndIdGameId(userId, gameId)
+                .orElseThrow(() -> {
+                    System.out.println("❌ No se encontró el juego para eliminar");
+                    return new ResourceNotFoundException("Parece que no tienes ese juego");
+                });
+
+        System.out.println("✅ Juego encontrado, procediendo a eliminar: " + gameLibrary.getGame().getTitle());
+
+        // Eliminar
+        gameLibraryRepository.delete(gameLibrary);
+        System.out.println("✅ Juego eliminado correctamente");
     }
     // ==================== MÉTODOS DE ESTADÍSTICAS ====================
 
@@ -109,6 +124,22 @@ public class GameLibraryService {
                     map.put("count", result[1]);
                     return map;
                 })
+                .collect(Collectors.toList());
+    }
+    // En GameLibraryService.java
+    public List<GameLibraryDTO> getGameLibraryByUserId(Long userId) {
+        List<GameLibrary> gameLibraries = gameLibraryRepository.findByIdUserId(userId);
+
+        return gameLibraries.stream()
+                .map(gl -> new GameLibraryDTO(
+                        gl.getGame().getId(),
+                        gl.getGame().getTitle(),
+                        gl.getGame().getDescription(),
+                        gl.getGame().getPlatform().toString(),
+                        gl.getGame().getGenre().toString(),
+                        gl.getStatus(),
+                        gl.getInsertionDate()
+                ))
                 .collect(Collectors.toList());
     }
 

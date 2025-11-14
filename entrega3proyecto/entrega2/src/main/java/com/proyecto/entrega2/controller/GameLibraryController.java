@@ -1,5 +1,6 @@
 package com.proyecto.entrega2.controller;
 
+import com.proyecto.entrega2.dto.GameLibraryDTO;
 import com.proyecto.entrega2.entity.GameLibrary;
 import com.proyecto.entrega2.entity.Game;
 import com.proyecto.entrega2.entity.gameStatus;
@@ -30,9 +31,9 @@ public class GameLibraryController
         this.userService=userService;
     }
     @GetMapping("/usuario/{id}")
-    public List<Game> getGameLibraryById(@PathVariable Long id){
-        return gameLibraryService.getGamesByUserId(id);
-
+    public ResponseEntity<List<GameLibraryDTO>> getGameLibraryById(@PathVariable Long id){
+        List<GameLibraryDTO> library = gameLibraryService.getGameLibraryByUserId(id);
+        return ResponseEntity.ok(library);
     }
     /*@PostMapping("usuario/{userId}/juego/{gameId}")
     public (@PathVariable Long userId,@PathVariable Long gameId){
