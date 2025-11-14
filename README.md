@@ -1,214 +1,230 @@
-\#proyecto\_software
+📚 Biblioteca de Juegos – Proyecto de Desarrollo de Software
 
-Hola!
 
-En esta versión encontrará la implementación de las funcionalidades básicas del proyecto "Juegos" (incluye front end):
+(Puedes reemplazar esta imagen por una captura de tu app.)
 
+📌 Descripción del proyecto
 
+Este proyecto implementa una aplicación completa para la gestión de una Biblioteca de Juegos, permitiendo que los usuarios registren, editen, consulten y eliminen juegos de su colección.
+Incluye:
 
-• Agregar, editar y eliminar juegos con información básica (título, plataforma, género).
+🌐 Backend REST en Spring Boot
 
-• Filtrar juegos por estado (rescatado,jugando,pendiente).
+🎨 Frontend moderno en React + Vite
 
+🗄️ Base de datos H2/MySQL
 
+🔄 Comunicación a través de API REST
 
-• Búsqueda por título o plataforma.
+📊 Módulo de estadísticas
 
+🔐 Login básico con usuarios demo
 
+🧱 Tecnologías utilizadas
+🔹 Backend
 
-///MANUAL DE INSTALACION Y CONFIGURACIÓN.////////////////////////////////
+Java 17
 
-Para poder usar el sistema se debe:
+Spring Boot 3
 
- 	•Tener instalado Maven, MySql y un IDE para Java.
+Spring Web
 
- 	•Descargar el contenido presente en el repositorio de GitHub.
+Spring Data JPA
 
- 	•Abrir el proyecto en un IDE, con java 17 disponibles.
+H2 / MySQL
 
- 	•Ejecutar la aplicación desde el IDE.
+🔹 Frontend
 
- 	•Una vez la aplicación haya iniciado, se podrán ejecutar solicitudes POST, PUT, GET, DELETE desde Postman, para usar Postman se debe:
+React 18
 
- 	•Usar la URL http://localhost:8080/api/juegos (URL principal)
+Vite
 
- 	•Seleccionar la solicitud deseada y modificar o no la URL según corresponda
+TypeScript
 
+TailwindCSS
 
+Shadcn/UI
 
+Lucide Icons
 
+📦 Cómo clonar y ejecutar el proyecto
+git clone https://github.com/tu-usuario/biblioteca-juegos.git
+cd biblioteca-juegos
 
-Respecto a la solicitud GET:
+🖥️ MANUAL DE USUARIO – FRONTEND (React + Vite)
+🔧 Instalación
+1️⃣ Entrar a la carpeta del frontend
+cd frontend
 
- 
+2️⃣ Instalar dependencias
+npm install
 
- 	•Para poder filtrar por estado,se debe añadir a la URL principal “/filtrarEstado/{estado}”
+3️⃣ Ejecutar la aplicación
+npm run dev
 
- 	•Para poder buscar por titulo, se debe añadir a la URL principal “/buscarTitulo/{titulo}”
+4️⃣ Abrir en navegador
 
- 	•Para poder filtrar por plataforma, se debe añadir a la URL principal “/filtrarPlataforma/{plataforma}”
+Normalmente Vite levanta en:
 
- 	•Para poder buscar por id, se debe añadir a la URL principal  “/{id}”
+http://localhost:5173
 
+🔐 Inicio de sesión (modo demo)
+Usuario	Contraseña
+demo@biblioteca.com
+	demo123
+admin@biblioteca.com
+	demo123
+gamer@biblioteca.com
+	demo123
+🧭 Funcionalidades principales del frontend
+✔ Biblioteca de juegos
 
+Listar juegos
 
-Restricción de valores:
+Buscar por título o plataforma
 
+Filtrar por estado
 
+Paginación
 
-Titulo: Hasta 336 caracteres.
+Ver autor, género, plataforma y estado
 
-Descripción: hasta 3000 caracteres
+✔ Gestión de juegos
 
-Género:
+Agregar juego (POST al backend)
 
- 	ACCION
+Editar juego (PUT al backend)
 
- 	AVENTURA
+Eliminar juego (DELETE al backend)
 
- 	RPG
+✔ Estadísticas
 
- 	ESTRATEGIA
+Gráficos por estado
 
- 	CARRERAS
+Gráficos por género
 
- 	SHOOTER
+📡 Conexión con el backend
 
- 	DEPORTES
+Toda la comunicación se realiza desde:
 
- 	LUCHA
+src/api/juegos.ts
 
- 	ARCADE
 
- 	PUZZLE
+Este archivo define:
 
- 	SIMULACION
+fetchGames()
 
- 	VISUAL NOVEL
+createGame()
 
- 	TERROR
+updateGame()
 
- 	MUNDO ABIERTO
+deleteGame()
 
- 	SANDBOX
+Se comunican con la API:
 
- 	PARTY
+http://localhost:8080/api/juegos
 
- 	REALIDAD VIRTUAL
+🖥️ MANUAL DE USUARIO – BACKEND (Spring Boot)
+🔧 Requisitos
 
- 	METROIDVANIA
+Java 17+
 
+Maven 3.8+
 
+MySQL (opcional)
 
-Plataforma:
+Puerto por defecto: 8080
 
+🚀 Cómo ejecutar el backend
+1️⃣ Entrar a la carpeta del backend
+cd backend
 
+2️⃣ Ejecutar con Maven
+mvn spring-boot:run
 
- 	PC
+3️⃣ Probar en navegador
+http://localhost:8080/api/juegos
 
- 	PLAYSTATION
+📚 Endpoints disponibles
+🔹 Obtener todos los juegos
+GET /api/juegos
 
- 	XBOX
+🔹 Obtener juego por ID
+GET /api/juegos/{id}
 
- 	NINTENDO SWITCH
+🔹 Crear juego
+POST /api/juegos
 
- 	NINTENDO 3DS
 
- 	WII
+Body JSON:
 
- 	WII U
+{
+  "titulo": "Hades",
+  "plataforma": "PC",
+  "genero": "Roguelike",
+  "estado": "RESCATADO"
+}
 
- 	GAMECUBE
+🔹 Actualizar juego
+PUT /api/juegos/{id}
 
- 	NINTENDO 64
+🔹 Eliminar juego
+DELETE /api/juegos/{id}
 
- 	SUPER NINTENDO
+🔹 Filtrar por estado
+GET /api/juegos/filtrarEstado/RESCATADO
 
- 	NES
+🔹 Buscar por título
+GET /api/juegos/buscarTitulo/Hades
 
- 	SEGA GENESIS
+🔹 Filtrar por plataforma
+GET /api/juegos/filtrarPlataforma/PC
 
- 	SEGA SATURN
+🔐 CORS (para permitir conexión con React)
 
- 	DREAMCAST
+En JuegoController incluir:
 
- 	PLAYSTATION 2
+@CrossOrigin(origins = "http://localhost:5173")
 
- 	PLAYSTATION 3
+🗂️ Estructura del proyecto
+Backend
+backend/
+ ├── src/main/java/com/proyecto/entrega2
+ │    ├── controller/JuegoController.java
+ │    ├── service/JuegoService.java
+ │    ├── entity/Juego.java
+ │    ├── entity/estadoJuego.java
+ │    └── repository/JuegoRepository.java
+ ├── resources/application.properties
+ └── pom.xml
 
- 	PLAYSTATION 4
+Frontend
+frontend/
+ ├── src/
+ │    ├── api/juegos.ts
+ │    ├── components/
+ │    │      ├── GameLibrary.tsx
+ │    │      ├── GameForm.tsx
+ │    │      ├── Statistics.tsx
+ │    │      └── LoginForm.tsx
+ │    ├── App.tsx
+ │    └── main.tsx
+ └── package.json
 
- 	PLAYSTATION 5
+📸 Capturas de pantalla (recomendadas)
 
- 	XBOX 360
+Agrega imágenes a la carpeta assets/ y referencia así:
 
- 	XBOX ONE
+![Login](./assets/login.png)
+![Biblioteca](./assets/library.png)
+![Agregar Juego](./assets/add-game.png)
+![Estadísticas](./assets/stats.png)
 
- 	XBOX SERIES X
+🏁 Estado del proyecto
 
- 	XBOX SERIES S
-
- 	ANDROID
-
- 	IOS
-
- 	TABLET
-
- 	MAC
-
- 	LINUX
-
- 	STEAM DECK
-
- 	OCULUS QUEST
-
- 	META QUEST
-
- 	PLAYSTATION VR
-
- 	HTC VIVE
-
- 	PICO
-
- 	NINTENDO DS
-
- 	GAME BOY
-
- 	GAME BOY ADVANCE
-
- 	PSP
-
- 	PS VITA
-
- 	ARCADE
-
- 	SMART TV
-
- 	WEB
-
- 	CLOUD GAMING
-
- 	AMAZON LUNA
-
- 	NVIDIA GEFORCE NOW
-
- 	GOOGLE STADIA
-
-estado:
-
- 	RESCATADO
-
- 	JUGANDO
-
- 	PENDIENTE
-
-
-
-Además encontrará un modulo de datos que le mostrara estadísticas globales relevantes.
-
-
-
-
-
-¡No creo que haya más actualizaciones:( !
-
+✔ Backend funcional
+✔ Frontend completamente integrado
+✔ CRUD operativo
+✔ Filtros, búsqueda y paginación
+✔ Estadísticas
+✔ Usuarios demo
