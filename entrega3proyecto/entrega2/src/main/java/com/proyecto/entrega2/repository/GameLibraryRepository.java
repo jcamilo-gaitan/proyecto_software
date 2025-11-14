@@ -2,6 +2,7 @@ package com.proyecto.entrega2.repository;
 import com.proyecto.entrega2.entity.*;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -12,7 +13,8 @@ public interface GameLibraryRepository extends JpaRepository<GameLibrary, GameLi
     List<Game> findGamesByUserId(@Param("userId")Long userID);
     void deleteByUserId(long userId);
     void deleteByGameId(long gameId);
-
+    Optional<GameLibrary> findByIdUserIdAndIdGameId(Long userId, Long gameId);
+    List<GameLibrary> findByIdUserId(Long userId);
     @Query("SELECT gl.game FROM GameLibrary gl WHERE gl.user.id=:userId and gl.status=:estado")
     List<Game> findGamesByUserIdAndStatus(@Param("userId") Long userId,@Param("estado") String estado);
     @Query("SELECT g.title, COUNT(gl) as count " +
