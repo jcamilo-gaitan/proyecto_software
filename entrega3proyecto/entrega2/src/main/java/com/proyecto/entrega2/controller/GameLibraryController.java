@@ -32,6 +32,7 @@ public class GameLibraryController
     @GetMapping("/usuario/{id}")
     public List<Game> getGameLibraryById(@PathVariable Long id){
         return gameLibraryService.getGamesByUserId(id);
+
     }
     /*@PostMapping("usuario/{userId}/juego/{gameId}")
     public (@PathVariable Long userId,@PathVariable Long gameId){

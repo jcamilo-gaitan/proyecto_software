@@ -2,7 +2,7 @@
 
 Hola!
 
-En esta versión encontrará la implementación de las funcionalidades básicas del proyecto "Juegos":
+En esta versión encontrará la implementación de las funcionalidades básicas del proyecto "Juegos" (incluye front end):
 
 
 
@@ -20,19 +20,19 @@ En esta versión encontrará la implementación de las funcionalidades básicas 
 
 Para poder usar el sistema se debe:
 
-&nbsp;	•Tener instalado Maven, MySql y un IDE para Java. 
+ 	•Tener instalado Maven, MySql y un IDE para Java.
 
-&nbsp;	•Descargar el contenido presente en el repositorio de GitHub.
+ 	•Descargar el contenido presente en el repositorio de GitHub.
 
-&nbsp;	•Abrir el proyecto en un IDE, con java 17 disponibles.
+ 	•Abrir el proyecto en un IDE, con java 17 disponibles.
 
-&nbsp;	•Ejecutar la aplicación desde el IDE.
+ 	•Ejecutar la aplicación desde el IDE.
 
-&nbsp;	•Una vez la aplicación haya iniciado, se podrán ejecutar solicitudes POST, PUT, GET, DELETE desde Postman, para usar Postman se debe:
+ 	•Una vez la aplicación haya iniciado, se podrán ejecutar solicitudes POST, PUT, GET, DELETE desde Postman, para usar Postman se debe:
 
-&nbsp;	•Usar la URL http://localhost:8080/api/juegos (URL principal)
+ 	•Usar la URL http://localhost:8080/api/juegos (URL principal)
 
-&nbsp;	•Seleccionar la solicitud deseada y modificar o no la URL según corresponda
+ 	•Seleccionar la solicitud deseada y modificar o no la URL según corresponda
 
 
 
@@ -40,15 +40,15 @@ Para poder usar el sistema se debe:
 
 Respecto a la solicitud GET:
 
-&nbsp;	
+ 
 
-&nbsp;	•Para poder filtrar por estado,se debe añadir a la URL principal “/filtrarEstado/{estado}”
+ 	•Para poder filtrar por estado,se debe añadir a la URL principal “/filtrarEstado/{estado}”
 
-&nbsp;	•Para poder buscar por titulo, se debe añadir a la URL principal “/buscarTitulo/{titulo}”
+ 	•Para poder buscar por titulo, se debe añadir a la URL principal “/buscarTitulo/{titulo}”
 
-&nbsp;	•Para poder filtrar por plataforma, se debe añadir a la URL principal “/filtrarPlataforma/{plataforma}”
+ 	•Para poder filtrar por plataforma, se debe añadir a la URL principal “/filtrarPlataforma/{plataforma}”
 
-&nbsp;	•Para poder buscar por id, se debe añadir a la URL principal  “/{id}”
+ 	•Para poder buscar por id, se debe añadir a la URL principal  “/{id}”
 
 
 
@@ -62,41 +62,41 @@ Descripción: hasta 3000 caracteres
 
 Género:
 
-&nbsp;	ACCION
+ 	ACCION
 
-&nbsp;	AVENTURA
+ 	AVENTURA
 
-&nbsp;	RPG
+ 	RPG
 
-&nbsp;	ESTRATEGIA
+ 	ESTRATEGIA
 
-&nbsp;	CARRERAS
+ 	CARRERAS
 
-&nbsp;	SHOOTER
+ 	SHOOTER
 
-&nbsp;	DEPORTES
+ 	DEPORTES
 
-&nbsp;	LUCHA
+ 	LUCHA
 
-&nbsp;	ARCADE
+ 	ARCADE
 
-&nbsp;	PUZZLE
+ 	PUZZLE
 
-&nbsp;	SIMULACION
+ 	SIMULACION
 
-&nbsp;	VISUAL NOVEL
+ 	VISUAL NOVEL
 
-&nbsp;	TERROR
+ 	TERROR
 
-&nbsp;	MUNDO ABIERTO
+ 	MUNDO ABIERTO
 
-&nbsp;	SANDBOX
+ 	SANDBOX
 
-&nbsp;	PARTY
+ 	PARTY
 
-&nbsp;	REALIDAD VIRTUAL
+ 	REALIDAD VIRTUAL
 
-&nbsp;	METROIDVANIA
+ 	METROIDVANIA
 
 
 
@@ -104,109 +104,111 @@ Plataforma:
 
 
 
-&nbsp;	PC
+ 	PC
 
-&nbsp;	PLAYSTATION
+ 	PLAYSTATION
 
-&nbsp;	XBOX
+ 	XBOX
 
-&nbsp;	NINTENDO SWITCH
+ 	NINTENDO SWITCH
 
-&nbsp;	NINTENDO 3DS
+ 	NINTENDO 3DS
 
-&nbsp;	WII
+ 	WII
 
-&nbsp;	WII U
+ 	WII U
 
-&nbsp;	GAMECUBE
+ 	GAMECUBE
 
-&nbsp;	NINTENDO 64
+ 	NINTENDO 64
 
-&nbsp;	SUPER NINTENDO
+ 	SUPER NINTENDO
 
-&nbsp;	NES
+ 	NES
 
-&nbsp;	SEGA GENESIS
+ 	SEGA GENESIS
 
-&nbsp;	SEGA SATURN
+ 	SEGA SATURN
 
-&nbsp;	DREAMCAST
+ 	DREAMCAST
 
-&nbsp;	PLAYSTATION 2
+ 	PLAYSTATION 2
 
-&nbsp;	PLAYSTATION 3
+ 	PLAYSTATION 3
 
-&nbsp;	PLAYSTATION 4
+ 	PLAYSTATION 4
 
-&nbsp;	PLAYSTATION 5
+ 	PLAYSTATION 5
 
-&nbsp;	XBOX 360
+ 	XBOX 360
 
-&nbsp;	XBOX ONE
+ 	XBOX ONE
 
-&nbsp;	XBOX SERIES X
+ 	XBOX SERIES X
 
-&nbsp;	XBOX SERIES S
+ 	XBOX SERIES S
 
-&nbsp;	ANDROID
+ 	ANDROID
 
-&nbsp;	IOS
+ 	IOS
 
-&nbsp;	TABLET
+ 	TABLET
 
-&nbsp;	MAC
+ 	MAC
 
-&nbsp;	LINUX
+ 	LINUX
 
-&nbsp;	STEAM DECK
+ 	STEAM DECK
 
-&nbsp;	OCULUS QUEST
+ 	OCULUS QUEST
 
-&nbsp;	META QUEST
+ 	META QUEST
 
-&nbsp;	PLAYSTATION VR
+ 	PLAYSTATION VR
 
-&nbsp;	HTC VIVE
+ 	HTC VIVE
 
-&nbsp;	PICO
+ 	PICO
 
-&nbsp;	NINTENDO DS
+ 	NINTENDO DS
 
-&nbsp;	GAME BOY
+ 	GAME BOY
 
-&nbsp;	GAME BOY ADVANCE
+ 	GAME BOY ADVANCE
 
-&nbsp;	PSP
+ 	PSP
 
-&nbsp;	PS VITA
+ 	PS VITA
 
-&nbsp;	ARCADE
+ 	ARCADE
 
-&nbsp;	SMART TV
+ 	SMART TV
 
-&nbsp;	WEB
+ 	WEB
 
-&nbsp;	CLOUD GAMING
+ 	CLOUD GAMING
 
-&nbsp;	AMAZON LUNA
+ 	AMAZON LUNA
 
-&nbsp;	NVIDIA GEFORCE NOW
+ 	NVIDIA GEFORCE NOW
 
-&nbsp;	GOOGLE STADIA
+ 	GOOGLE STADIA
 
 estado:
 
-&nbsp;	RESCATADO
+ 	RESCATADO
 
-&nbsp;	JUGANDO
+ 	JUGANDO
 
-&nbsp;	PENDIENTE
-
-
+ 	PENDIENTE
 
 
 
+Además encontrará un modulo de datos que le mostrara estadísticas globales relevantes.
 
 
-¡Después del 18 de octubre de 2025, vendrán más actualizaciones!
+
+
+
+¡No creo que haya más actualizaciones:( !
 

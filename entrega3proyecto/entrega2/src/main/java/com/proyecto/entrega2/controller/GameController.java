@@ -41,6 +41,7 @@ public class GameController {
         return gameService.getGameById(id);
     }
 
+
     @GetMapping("/buscarTitulo/{titulo}")
     public Game getGameByTitle(@PathVariable String titulo){
         return gameService.getGamesByTitle(titulo);
