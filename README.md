@@ -1,14 +1,16 @@
-\#proyecto\_software
+📚 Biblioteca de Juegos – Proyecto de Desarrollo de Software
 
-Hola!
 
 En esta versión encontrará la implementación de las funcionalidades completas del proyecto "Juegos" (incluye front end):
 
+📌 Descripción del proyecto
 
+Este proyecto implementa una aplicación completa para la gestión de una Biblioteca de Juegos, permitiendo que los usuarios registren, editen, consulten y eliminen juegos de su colección.
+Incluye:
 
-• Agregar, editar y eliminar juegos con información básica (título, plataforma, género).
+🌐 Backend REST en Spring Boot
 
-• Filtrar juegos por estado (rescatado,jugando,pendiente).
+🎨 Frontend moderno en React + Vite
 
 • Búsqueda por título o plataforma.
 
@@ -18,45 +20,70 @@ En esta versión encontrará la implementación de las funcionalidades completas
 
 biblioteca.
 
+🔐 Login básico con usuarios demo
 
+🧱 Tecnologías utilizadas
+🔹 Backend
 
-///MANUAL DE INSTALACION Y CONFIGURACIÓN.////////////////////////////////
+Java 17
 
-Para poder usar el sistema se debe:
+Spring Boot 3
 
- 	•Tener instalado Maven, MySql y un IDE para Java.
+Spring Web
 
 &nbsp;	•Tener instalado node v24.
 
  	•Descargar el contenido presente en el repositorio de GitHub.
 
- 	•Abrir el proyecto en un IDE, con java 17 disponibles.
+H2 / MySQL
 
- 	•Ejecutar la aplicación desde el IDE.
+🔹 Frontend
 
- 	•Una vez la aplicación haya iniciado, se podrán ejecutar solicitudes POST, PUT, GET, DELETE desde Postman, para usar Postman se debe:
+React 18
 
  	•Usar la URL http://localhost:8080/api/juegos (URL principal) en caso de usar postman.
 
  	•Para acceder al front end se deberá acceder a la consola de comandos y ejecutar 'npm start' en la carpeta front end
 
+TailwindCSS
 
+Shadcn/UI
 
+Lucide Icons
 
+📦 Cómo clonar y ejecutar el proyecto
+git clone https://github.com/tu-usuario/biblioteca-juegos.git
+cd biblioteca-juegos
 
-Respecto a la solicitud GET:
+🖥️ MANUAL DE USUARIO – FRONTEND (React + Vite)
+🔧 Instalación
+1️⃣ Entrar a la carpeta del frontend
+cd frontend
 
- 
+2️⃣ Instalar dependencias
+npm install
 
- 	•Para poder filtrar por estado,se debe añadir a la URL principal “/filtrarEstado/{estado}”
+3️⃣ Ejecutar la aplicación
+npm run dev
 
- 	•Para poder buscar por titulo, se debe añadir a la URL principal “/buscarTitulo/{titulo}”
+4️⃣ Abrir en navegador
 
- 	•Para poder filtrar por plataforma, se debe añadir a la URL principal “/filtrarPlataforma/{plataforma}”
+Normalmente Vite levanta en:
 
- 	•Para poder buscar por id, se debe añadir a la URL principal  “/{id}”
+http://localhost:5173
 
+🔐 Inicio de sesión (modo demo)
+Usuario	Contraseña
+demo@biblioteca.com
+	demo123
+admin@biblioteca.com
+	demo123
+gamer@biblioteca.com
+	demo123
+🧭 Funcionalidades principales del frontend
+✔ Biblioteca de juegos
 
+Listar juegos
 
 
 
@@ -70,95 +97,142 @@ agregar juegos a biblioteca, crear nuevos juegos en catálogo y acceder a visual
 
 Restricción de valores:
 
+Filtrar por estado
+
+Paginación
+
+Ver autor, género, plataforma y estado
+
+✔ Gestión de juegos
+
+Agregar juego (POST al backend)
+
+Editar juego (PUT al backend)
+
+Eliminar juego (DELETE al backend)
+
+✔ Estadísticas
+
+Gráficos por estado
+
+Gráficos por género
+
+📡 Conexión con el backend
+
+Toda la comunicación se realiza desde:
+
+src/api/juegos.ts
 
 
-Titulo: Hasta 336 caracteres.
+Este archivo define:
 
-Descripción: hasta 3000 caracteres
+fetchGames()
 
-Género:
+createGame()
 
- 	ACCION
+updateGame()
 
- 	AVENTURA
+deleteGame()
 
- 	RPG
+Se comunican con la API:
 
- 	ESTRATEGIA
+http://localhost:8080/api/juegos
 
- 	CARRERAS
+🖥️ MANUAL DE USUARIO – BACKEND (Spring Boot)
+🔧 Requisitos
 
- 	SHOOTER
+Java 17+
 
- 	DEPORTES
+Maven 3.8+
 
- 	LUCHA
+MySQL (opcional)
 
- 	ARCADE
+Puerto por defecto: 8080
 
- 	PUZZLE
+🚀 Cómo ejecutar el backend
+1️⃣ Entrar a la carpeta del backend
+cd backend
 
- 	SIMULACION
+2️⃣ Ejecutar con Maven
+mvn spring-boot:run
 
- 	VISUAL NOVEL
+3️⃣ Probar en navegador
+http://localhost:8080/api/juegos
 
- 	TERROR
+📚 Endpoints disponibles
+🔹 Obtener todos los juegos
+GET /api/juegos
 
- 	MUNDO ABIERTO
+🔹 Obtener juego por ID
+GET /api/juegos/{id}
 
- 	SANDBOX
-
- 	PARTY
-
- 	REALIDAD VIRTUAL
-
- 	METROIDVANIA
-
-
-
-Plataforma:
-
+🔹 Crear juego
+POST /api/juegos
 
 
- 	PC
+Body JSON:
 
- 	PLAYSTATION
+{
+  "titulo": "Hades",
+  "plataforma": "PC",
+  "genero": "Roguelike",
+  "estado": "RESCATADO"
+}
 
- 	XBOX
+🔹 Actualizar juego
+PUT /api/juegos/{id}
 
- 	NINTENDO SWITCH
+🔹 Eliminar juego
+DELETE /api/juegos/{id}
 
- 	NINTENDO 3DS
+🔹 Filtrar por estado
+GET /api/juegos/filtrarEstado/RESCATADO
 
- 	WII
+🔹 Buscar por título
+GET /api/juegos/buscarTitulo/Hades
 
- 	WII U
+🔹 Filtrar por plataforma
+GET /api/juegos/filtrarPlataforma/PC
 
- 	GAMECUBE
+🔐 CORS (para permitir conexión con React)
 
- 	NINTENDO 64
+En JuegoController incluir:
 
- 	SUPER NINTENDO
+@CrossOrigin(origins = "http://localhost:5173")
 
- 	NES
+🗂️ Estructura del proyecto
+Backend
+backend/
+ ├── src/main/java/com/proyecto/entrega2
+ │    ├── controller/JuegoController.java
+ │    ├── service/JuegoService.java
+ │    ├── entity/Juego.java
+ │    ├── entity/estadoJuego.java
+ │    └── repository/JuegoRepository.java
+ ├── resources/application.properties
+ └── pom.xml
 
- 	SEGA GENESIS
+Frontend
+frontend/
+ ├── src/
+ │    ├── api/juegos.ts
+ │    ├── components/
+ │    │      ├── GameLibrary.tsx
+ │    │      ├── GameForm.tsx
+ │    │      ├── Statistics.tsx
+ │    │      └── LoginForm.tsx
+ │    ├── App.tsx
+ │    └── main.tsx
+ └── package.json
 
- 	SEGA SATURN
+📸 Capturas de pantalla (recomendadas)
 
- 	DREAMCAST
+Agrega imágenes a la carpeta assets/ y referencia así:
 
- 	PLAYSTATION 2
-
- 	PLAYSTATION 3
-
- 	PLAYSTATION 4
-
- 	PLAYSTATION 5
-
- 	XBOX 360
-
- 	XBOX ONE
+![Login](./assets/login.png)
+![Biblioteca](./assets/library.png)
+![Agregar Juego](./assets/add-game.png)
+![Estadísticas](./assets/stats.png)
 
  	XBOX SERIES X
 
@@ -234,3 +308,9 @@ Además encontrará un modulo de datos que le mostrara estadísticas globales re
 
 ¡No creo que haya más actualizaciones:( !
 
+✔ Backend funcional
+✔ Frontend completamente integrado
+✔ CRUD operativo
+✔ Filtros, búsqueda y paginación
+✔ Estadísticas
+✔ Usuarios demo
