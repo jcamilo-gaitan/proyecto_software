@@ -61,7 +61,7 @@ public class AuthController {
                 return ResponseEntity.badRequest().body("Edad inválida");
             }
 
-            if (request.getSex() == null || request.getSex().trim().isEmpty()) {
+            if (request.getSex() == null) {
                 return ResponseEntity.badRequest().body("El sexo es obligatorio");
             }
 

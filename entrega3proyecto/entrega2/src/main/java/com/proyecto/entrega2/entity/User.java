@@ -19,5 +19,6 @@ public class User {
     @Column(nullable=false)
     private String password;
     private int age;
-    private String sex;
+    @Enumerated(EnumType.STRING)
+    possibleGenders sex;
 }
