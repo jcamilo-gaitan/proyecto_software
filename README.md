@@ -1,7 +1,7 @@
 📚 Biblioteca de Juegos – Proyecto de Desarrollo de Software
 
 
-(Puedes reemplazar esta imagen por una captura de tu app.)
+En esta versión encontrará la implementación de las funcionalidades completas del proyecto "Juegos" (incluye front end):
 
 📌 Descripción del proyecto
 
@@ -12,11 +12,13 @@ Incluye:
 
 🎨 Frontend moderno en React + Vite
 
-🗄️ Base de datos H2/MySQL
+• Búsqueda por título o plataforma.
 
-🔄 Comunicación a través de API REST
+• Ranking de Juegos más guardados.
 
-📊 Módulo de estadísticas
+• Gráficos de plataformas más frecuentes en la
+
+biblioteca.
 
 🔐 Login básico con usuarios demo
 
@@ -29,7 +31,9 @@ Spring Boot 3
 
 Spring Web
 
-Spring Data JPA
+&nbsp;	•Tener instalado node v24.
+
+ 	•Descargar el contenido presente en el repositorio de GitHub.
 
 H2 / MySQL
 
@@ -37,9 +41,9 @@ H2 / MySQL
 
 React 18
 
-Vite
+ 	•Usar la URL http://localhost:8080/api/juegos (URL principal) en caso de usar postman.
 
-TypeScript
+ 	•Para acceder al front end se deberá acceder a la consola de comandos y ejecutar 'npm start' en la carpeta front end
 
 TailwindCSS
 
@@ -81,7 +85,17 @@ gamer@biblioteca.com
 
 Listar juegos
 
-Buscar por título o plataforma
+
+
+Todas las solicitudes están implementadas en la interfaz gráfica, donde entre otros, podrá:
+
+agregar juegos a biblioteca, crear nuevos juegos en catálogo y acceder a visualización de datos globales.
+
+
+
+
+
+Restricción de valores:
 
 Filtrar por estado
 
@@ -220,7 +234,79 @@ Agrega imágenes a la carpeta assets/ y referencia así:
 ![Agregar Juego](./assets/add-game.png)
 ![Estadísticas](./assets/stats.png)
 
-🏁 Estado del proyecto
+ 	XBOX SERIES X
+
+ 	XBOX SERIES S
+
+ 	ANDROID
+
+ 	IOS
+
+ 	TABLET
+
+ 	MAC
+
+ 	LINUX
+
+ 	STEAM DECK
+
+ 	OCULUS QUEST
+
+ 	META QUEST
+
+ 	PLAYSTATION VR
+
+ 	HTC VIVE
+
+ 	PICO
+
+ 	NINTENDO DS
+
+ 	GAME BOY
+
+ 	GAME BOY ADVANCE
+
+ 	PSP
+
+ 	PS VITA
+
+ 	ARCADE
+
+ 	SMART TV
+
+ 	WEB
+
+ 	CLOUD GAMING
+
+ 	AMAZON LUNA
+
+ 	NVIDIA GEFORCE NOW
+
+ 	GOOGLE STADIA
+
+estado:
+
+ 	RESCATADO
+
+ 	JUGANDO
+
+ 	PENDIENTE
+
+
+
+
+
+Recuerde que deberá registrarse e iniciar sesión para usar la aplicación, ¡no olvide su contraseña!
+
+
+
+Además encontrará un modulo de datos que le mostrara estadísticas globales relevantes.
+
+
+
+
+
+¡No creo que haya más actualizaciones:( !
 
 ✔ Backend funcional
 ✔ Frontend completamente integrado

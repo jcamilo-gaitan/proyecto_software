@@ -1,11 +1,13 @@
 package com.proyecto.entrega2.dto;
 
+import com.proyecto.entrega2.entity.possibleGenders;
+
 public class RegisterRequest {
     private String name;
     private String email;
     private String password;
     private int age;
-    private String sex;
+    private possibleGenders sex;
 
     // Getters y Setters
     public String getName() {
@@ -40,11 +42,11 @@ public class RegisterRequest {
         this.age = age;
     }
 
-    public String getSex() {
+    public possibleGenders getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(possibleGenders sex) {
         this.sex = sex;
     }
 }
